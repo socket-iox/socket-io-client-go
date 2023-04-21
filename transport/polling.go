@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"strings"
 )
@@ -40,7 +40,7 @@ func (p *Polling) Open() error {
 		return err
 	}
 
-	bodyBytes, err := io.ReadAll(resp.Body)
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
@@ -94,7 +94,7 @@ func (p *Polling) Read() (message []string, err error) {
 		return nil, errors.New("read request failed")
 	}
 
-	bodyBytes, err := io.ReadAll(resp.Body)
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
 		return nil, err
@@ -135,7 +135,7 @@ func (p *Polling) Write(message string) error {
 		return err
 	}
 
-	bodyBytes, err := io.ReadAll(resp.Body)
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/gorilla/websocket"
-	"io"
+	"io/ioutil"
 	"net/http"
 	"strings"
 )
@@ -47,7 +47,7 @@ func (w *Websocket) Open() error {
 		return errors.New("open packet should be text message")
 	}
 
-	data, err := io.ReadAll(reader)
+	data, err := ioutil.ReadAll(reader)
 	if err != nil {
 		return err
 	}
@@ -97,7 +97,7 @@ func (w *Websocket) Read() (message []string, err error) {
 		return nil, nil
 	}
 
-	data, err := io.ReadAll(reader)
+	data, err := ioutil.ReadAll(reader)
 	if err != nil {
 		return nil, err
 	}
